@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>البوابة الشاملة للإحصاء والاعتماد الأكاديمي</title>
+    <title>الإحصاء ودوره في دعم الجودة والاعتماد الأكاديمي</title>
     <style>
         :root {
             --primary-color: #0f172a;
@@ -11,11 +11,10 @@
             --accent-color: #0d9488;
             --bg-color: #f8fafc;
             --text-color: #334155;
+            --card-bg: #ffffff;
             --success-color: #10b981;
             --error-color: #ef4444;
-            --card-bg: #ffffff;
-            --warning-bg: #fffaf0;
-            --warning-border: #dd6b20;
+            --border-color: #e2e8f0;
         }
 
         body {
@@ -24,17 +23,17 @@
             color: var(--text-color);
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
-        /* شريط التنقل العلوي الاحترافي */
+        /* شريط التنقل العلوي المرتب كالمواقع الاحترافية */
         nav {
             background-color: var(--primary-color);
-            padding: 15px 40px;
+            padding: 15px 30px;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -42,58 +41,54 @@
 
         .nav-logo {
             color: white;
-            font-weight: 700;
-            font-size: 1.4rem;
+            font-weight: bold;
+            font-size: 1.3rem;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         .nav-links {
             display: flex;
-            gap: 10px;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
             color: #cbd5e1;
             text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 8px;
+            padding: 8px 14px;
+            border-radius: 6px;
             transition: all 0.3s ease;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 500;
         }
 
         .nav-links a:hover {
             color: white;
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255,255,255,0.08);
         }
 
         .nav-links a.active {
             color: white;
             background-color: var(--accent-color);
-            box-shadow: 0 2px 8px rgba(13, 148, 136, 0.4);
         }
 
         /* الهيدر الترحيبي */
         header {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 60px 20px;
+            padding: 50px 20px;
             text-align: center;
-            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            box-shadow: inset 0 -10px 20px rgba(0,0,0,0.05);
         }
 
         header h1 {
             margin: 0;
-            font-size: 2.6rem;
-            letter-spacing: -0.5px;
+            font-size: 2.3rem;
         }
 
         header p {
-            margin: 15px 0 0 0;
-            font-size: 1.2rem;
+            margin: 10px 0 0 0;
+            font-size: 1.1rem;
             opacity: 0.85;
         }
 
@@ -103,452 +98,491 @@
             padding: 0 20px;
         }
 
-        /* نظام الأقسام السلسة */
+        /* إدارة تفعيل الأقسام */
         .page-section {
             display: none;
-            animation: slideUp 0.4s ease-in-out forwards;
+            animation: fadeIn 0.4s ease-in-out forwards;
         }
 
         .page-section.active {
             display: block;
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(15px); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* كروت لوحة التحكم */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .stat-card {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 14px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02), 0 1px 3px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--accent-color);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-card p {
-            margin: 0;
-            color: #64748b;
-            font-size: 1rem;
-        }
-
-        .stat-card h3 {
-            font-size: 2.8rem;
-            margin: 10px 0 0 0;
-            color: var(--secondary-color);
-        }
-
-        /* تصميم الكروت العام */
+        /* كروت التصميم */
         .card {
             background: var(--card-bg);
-            padding: 35px;
-            border-radius: 14px;
+            padding: 30px;
+            border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.02), 0 1px 3px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
-            border: 1px solid #e2e8f0;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
         }
 
         .card h2 {
             color: var(--secondary-color);
             margin-top: 0;
             border-bottom: 2px solid #f1f5f9;
-            padding-bottom: 15px;
-            font-size: 1.6rem;
+            padding-bottom: 12px;
+            font-size: 1.5rem;
         }
 
-        /* أهمية الاستبيان والتغذية الراجعة */
-        .importance-box {
-            background-color: var(--warning-bg);
-            border-right: 6px solid var(--warning-border);
-            padding: 25px;
-            border-radius: 10px;
-            margin-top: 25px;
-        }
-
-        .importance-box h4 {
-            margin-top: 0;
-            color: #c2410c;
+        .card h3 {
+            color: var(--accent-color);
             font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
-        /* الحاسبة التفاعلية للمؤشرات */
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            max-width: 500px;
-            margin-bottom: 20px;
+        /* الجداول المنظمة */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
         }
 
-        .form-group label {
-            font-weight: 600;
+        table th, table td {
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            text-align: right;
+        }
+
+        table th {
+            background-color: #f1f5f9;
             color: var(--primary-color);
         }
 
-        .form-group input {
-            padding: 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-family: inherit;
+        /* شبكة المربعات للـ KPIs ولوحة التحكم */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
         }
 
-        .action-btn {
+        .grid-item {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .grid-item h4 {
+            margin: 0 0 10px 0;
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+
+        .grid-item .number {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin: 5px 0;
+        }
+
+        /* اللعبة الإحصائية التفاعلية */
+        .options-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .game-btn {
+            background-color: #f1f5f9;
+            border: 1px solid var(--border-color);
+            padding: 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: right;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .game-btn:hover {
+            background-color: #e2e8f0;
+        }
+
+        .btn-correct { background-color: var(--success-color) !important; color: white; border-color: var(--success-color); }
+        .btn-wrong { background-color: var(--error-color) !important; color: white; border-color: var(--error-color); }
+
+        /* النماذج والاستبيانات للمقترحات */
+        .form-control {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .form-control label {
+            font-weight: 600;
+        }
+
+        .form-control input, .form-control textarea, .form-control select {
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .submit-btn {
             background-color: var(--accent-color);
             color: white;
             border: none;
             padding: 12px 24px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 1rem;
             font-weight: 600;
-            transition: background 0.2s;
             font-family: inherit;
         }
 
-        .action-btn:hover {
-            background-color: #0f766e;
+        .submit-btn:hover {
+            opacity: 0.9;
         }
 
-        .result-box {
-            margin-top: 20px;
-            padding: 15px;
+        /* رسالة الموقع الختامية */
+        .motto-card {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-right: 6px solid #d97706;
+            padding: 20px;
             border-radius: 8px;
-            font-weight: 600;
-            display: none;
-        }
-
-        /* تصميم اللعبة التفاعلية */
-        .options-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin: 25px 0;
-            max-width: 600px;
-        }
-
-        .game-opt-btn {
-            background-color: #f1f5f9;
-            border: 2px solid #e2e8f0;
-            padding: 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            text-align: right;
-            font-size: 1.05rem;
-            font-family: inherit;
-            transition: all 0.2s;
-        }
-
-        .game-opt-btn:hover {
-            background-color: #e2e8f0;
-            border-color: #cbd5e1;
-        }
-
-        .correct { background-color: var(--success-color) !important; color: white !important; border-color: var(--success-color) !important; }
-        .wrong { background-color: var(--error-color) !important; color: white !important; border-color: var(--error-color) !important; }
-
-        /* نموذج الاستبيان الاستطلاعي */
-        .survey-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 15px 0;
-            font-size: 1.05rem;
-        }
-
-        .survey-row input[type="radio"] {
-            width: 18px;
-            height: 18px;
-            accent-color: var(--accent-color);
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #78350f;
+            margin-top: 30px;
         }
 
         footer {
             background-color: var(--primary-color);
             color: #94a3b8;
             text-align: center;
-            padding: 25px;
-            margin-top: 60px;
-            font-size: 0.95rem;
-            border-top: 1px solid #1e293b;
+            padding: 20px;
+            margin-top: 50px;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#" class="nav-logo">📊 بوابة الجودة والإحصاء</a>
+        <a href="#" class="nav-logo">📊 بوابة الجودة والأرقام</a>
         <div class="nav-links">
-            <a href="#" class="nav-item active" onclick="showSection('home')">الرئيسية</a>
-            <a href="#" class="nav-item" onclick="showSection('importance')">أهمية الاستبيانات</a>
-            <a href="#" class="nav-item" onclick="showSection('standards')">معايير الجودة</a>
-            <a href="#" class="nav-item" onclick="showSection('calculator')">حاسبة KPIs</a>
-            <a href="#" class="nav-item" onclick="showSection('game')">لعبة التحدي</a>
+            <a href="#" class="nav-item active" onclick="navigateMenu('tab-home')">الرئيسية</a>
+            <a href="#" class="nav-item" onclick="navigateMenu('tab-stats')">مفهوم الإحصاء</a>
+            <a href="#" class="nav-item" onclick="navigateMenu('tab-quality')">الجودة والاعتماد</a>
+            <a href="#" class="nav-item" onclick="navigateMenu('tab-relation')">الإحصاء والجودة</a>
+            <a href="#" class="nav-item" onclick="navigateMenu('tab-kpis')">مؤشرات الأداء</a>
+            <a href="#" class="nav-item" onclick="navigateMenu('tab-journey')">رحلة البيانات</a>
+            <a href="#" class="nav-item" onclick="navigateMenu('tab-dashboard')">لوحة التحكم</a>
+            <a href="#" class="nav-item" onclick="navigateMenu('tab-game')">اللعبة التفاعلية</a>
+            <a href="#" class="nav-item" onclick="navigateMenu('tab-contact')">التواصل والمقترحات</a>
         </div>
     </nav>
 
     <header>
-        <h1>المنصة الأكاديمية المتكاملة للجودة</h1>
-        <p>بوابتكم التفاعلية لتوظيف أدوات التحليل الإحصائي والتقييم الذاتي في استيفاء معايير الاعتماد</p>
+        <h1>الإحصاء شريك أساسي في الجودة والاعتماد الأكاديمي</h1>
+        <p>نحو بناء قرارات أكاديمية صائبة مبنية على الأدلة والتحليل الرقمي</p>
     </header>
 
     <div class="container">
 
-        <section id="home" class="page-section active">
+        <section id="tab-home" class="page-section active">
             <div class="card">
-                <h2>📈 لوحة قياس الأداء الأكاديمي الرقمي</h2>
-                <p>مرحباً بكم في منصة الجودة المتكاملة، المصممة خصيصاً لاستعراض كيف يحول التحليل الإحصائي الأرقام الصامتة إلى قرارات إستراتيجية تضمن تميز المؤسسات التعليمية وتأهيلها للاعتماد الأكاديمي.</p>
-                
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <p>معدل رضا الخريجين</p>
-                        <h3>89.4%</h3>
-                    </div>
-                    <div class="stat-card">
-                        <p>نسبة الجاهزية للاعتماد</p>
-                        <h3>92.0%</h3>
-                    </div>
-                    <div class="stat-card">
-                        <p>استيفاء مؤشرات نواتج التعلم</p>
-                        <h3>85.7%</h3>
-                    </div>
-                </div>
+                <h2>🏢 نبذة عن الموقع</h2>
+                <p>في عصر التحول الرقمي واتخاذ القرار المبني على البيانات، أصبح الإحصاء أداة رئيسية لدعم الجودة والاعتماد الأكاديمي داخل المؤسسات التعليمية. فمن خلال جمع البيانات وتحليلها وتفسيرها يمكن للمؤسسات التعرف على نقاط القوة وفرص التحسين واتخاذ قرارات تسهم في تطوير العملية التعليمية وتحقيق التميز المؤسسي.</p>
+                <p>يهدف هذا الموقع إلى توضيح العلاقة بين الإحصاء والجودة والاعتماد الأكاديمي، وإبراز دور البيانات في تحسين الخدمات التعليمية وتحقيق أهداف المؤسسات الأكاديمية.</p>
+            </div>
+            
+            <div class="card">
+                <h2>🏆 قصص نجاح واقعية</h2>
+                <h3>💡 المثال الأول</h3>
+                <p>أظهرت نتائج الاستبانات انخفاض رضا الطلاب عن الخدمات الإلكترونية، مما أدى إلى تطوير الأنظمة الرقمية وتحسن مستوى الرضا في العام التالي مباشرة.</p>
+                <h3>💡 المثال الثاني</h3>
+                <p>أشارت البيانات إلى انخفاض نسبة المشاركة في الأنشطة الطلابية، فتم إطلاق برامج جديدة ومبتكرة أسهمت في رفع معدلات المشاركة بفاعلية.</p>
+                <h3>💡 المثال الثالث</h3>
+                <p>ساعد تحليل بيانات الخريجين الموسع في تطوير وتحديث الخطط الدراسية بما يتناسب تماماً مع متطلبات واحتياجات سوق العمل الحديث.</p>
             </div>
         </section>
 
-        <section id="importance" class="page-section">
+        <section id="tab-stats" class="page-section">
             <div class="card">
-                <h2>🔄 التغذية الراجعة: ركيزة البناء والتطوير للمؤسسات</h2>
-                <p>الاستبيان الإحصائي ليس مجرد إجراء روتيني لجمع البيانات، بل هو <strong>المرآة الحقيقية الصادقة والوحيدة</strong> التي تعكس واقع المنظومة الأكاديمية بعيون المستفيدين منها (من طلاب، وأعضاء هيئة تدريس، وخريجين، وسوق العمل).</p>
+                <h2>أولاً: ما هو الإحصاء؟</h2>
+                <p>الإحصاء هو العلم الذي يهتم بجمع البيانات وتنظيمها وتحليلها وتفسيرها واستخلاص النتائج منها بهدف دعم اتخاذ القرار وحل المشكلات المختلفة.</p>
+                <p>ويستخدم الإحصاء في جميع المجالات مثل الطب والهندسة والاقتصاد والتعليم والإدارة، ويعد أحد أهم الأدوات التي تعتمد عليها المؤسسات التعليمية في تقييم أدائها وتحسين خدماتها.</p>
                 
-                <div class="importance-box">
-                    <h4>⚠️ خطر حتمي: ماذا يحدث لو غاب الاستبيان الإحصائي؟</h4>
-                    <p><strong>بدون الاستبيان وتحليله إحصائياً، لن تتطور المؤسسة الأكاديمية أبداً، بل ستقع في فخ الجمود التدريجي!</strong> غيابه يعني انقطاع تواصل المؤسسة مع واقعها، واتخاذ قرارات عشوائية مبنية على الحدس الشخصي والتخمين بدلاً من الدلائل والحقائق الرقمية. سيؤدي هذا مباشرة إلى تعمية الإدارة عن عيوب المقررات ومشاكل الخدمات؛ مما يقود حتماً إلى انهيار معايير الجودة وفشل المؤسسة في نيل الاعتماد الأكاديمي.</p>
+                <h3>🔍 أنواع الإحصاء الرئيسية</h3>
+                <div style="margin-right: 15px;">
+                    <h4>1- الإحصاء الوصفي</h4>
+                    <p>يهتم بوصف البيانات وتنظيمها وعرضها باستخدام الجداول والرسوم البيانية والمقاييس الإحصائية مثل: (المتوسط الحسابي، الوسيط، المنوال، الانحراف المعياري، والنسب المئوية).</p>
+                    <p style="background: #f1f5f9; padding: 10px; border-left: 4px solid var(--accent-color);"><strong>مثال توضيحي:</strong> إذا بلغ متوسط رضا الطلاب عن الخدمات التعليمية 4.2 من 5 فإن الإحصاء الوصفي يساعد في عرض هذه النتيجة بطريقة واضحة ومفهومة.</p>
+                    
+                    <h4>2- الإحصاء الاستدلالي</h4>
+                    <p>يهتم باستخدام عينة من البيانات لاستخلاص نتائج أو اتخاذ قرارات تخص المجتمع بأكمله، ويشمل: (اختبار الفرضيات، فترات الثقة، الانحدار، وتحليل التباين).</p>
+                    <p style="background: #f1f5f9; padding: 10px; border-left: 4px solid var(--accent-color);"><strong>مثال توضيحي:</strong> استخدام عينة مقننة من الطلاب للتنبؤ بمستوى رضا جميع طلاب الجامعة الإجمالي.</p>
                 </div>
 
-                <div style="margin-top: 30px; padding: 20px; background-color: #f1f5f9; border-radius: 8px;">
-                    <h3 style="margin-top: 0; color: var(--secondary-color);">📝 استطلاع رأي فوري: قياس أهمية الاستبيان</h3>
-                    <p>برأيك، هل تعتقد أن اتخاذ القرارات بناءً على نتائج الاستبيانات يضمن جودة المؤسسة؟</p>
-                    <div class="survey-row"><input type="radio" name="opinion" value="yes"> نعم، يضمن التطوير القائم على الأدلة.</div>
-                    <div class="survey-row"><input type="radio" name="opinion" value="no"> لا، الأساليب التقليدية تكفي.</div>
-                    <button class="action-btn" style="margin-top: 10px;" onclick="submitSurvey()">إرسال الرأي الإحصائي</button>
-                    <div id="survey-feedback" style="margin-top: 15px; font-weight: bold; color: var(--accent-color);"></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="standards" class="page-section">
-            <div class="card">
-                <h2>📋 توظيف الإحصاء في تلبية معايير الاعتماد</h2>
-                <p>تطلب الهيئات الوطنية والمسؤولية عن الاعتماد الأكاديمي تقارير إحصائية دورية وموثقة لتغطية معايير الجودة الأساسية ومنها:</p>
-                <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
-                <ul style="padding-right: 20px; line-height: 2;">
-                    <li><strong>المعيار الأول (البرنامج التعليمي ونواتج التعلم):</strong> قياس نسب نجاح الطلاب، وتحليل الانحراف المعياري للدرجات للتأكد من استقرار التدريس علمياً.</li>
-                    <li><strong>المعيار الثاني (الطلاب والخدمات):</strong> تطبيق استبانات دورية لقياس مدى الرضا عن البيئة الجامعية، والمكتبات، ومصادر التعلم الرقمية.</li>
-                    <li><strong>المعيار الثالث (هيئة التدريس):</strong> قياس الكفاءة والإنتاجية العلمية والبحثية باستخدام مؤشرات أداء إحصائية واضحة ومعلنة.</li>
+                <h3>🎯 أهمية الإحصاء في المؤسسات التعليمية</h3>
+                <ul>
+                    <li>دعم اتخاذ القرارات المبنية على الأدلة والقرارات الرقمية.</li>
+                    <li>متابعة جودة البرامج الأكاديمية والمقررات بشكل علمي.</li>
+                    <li>تقييم كفاءة الخدمات التعليمية والإدارية المقدمة.</li>
+                    <li>تحسين وتطوير تجربة الطالب التعليمية الشاملة.</li>
+                    <li>قياس دقيق لمستوى تحقيق الأهداف الاستراتيجية الموضوعة للمؤسسة.</li>
                 </ul>
             </div>
         </section>
 
-        <section id="calculator" class="page-section">
+        <section id="tab-quality" class="page-section">
             <div class="card">
-                <h2>🧮 حاسبة مؤشر توظيف الخريجين الذكية (KPIs)</h2>
-                <p>أداة تطبيقية تتيح لكِ حساب أحد أبرز مؤشرات الأداء المطلوبة في ملفات الجودة والاعتماد الأكاديمي بشكل آلي ودقيق:</p>
+                <h2>ثانياً: ما هي الجودة والاعتماد الأكاديمي؟</h2>
                 
-                <div class="form-group">
-                    <label>إجمالي عدد خريجي الدفعة الكلي:</label>
-                    <input type="number" id="totalGrads" placeholder="مثال: 150">
-                </div>
-                <div class="form-group">
-                    <label>عدد الحاصلين على وظيفة خلال 6 أشهر من التخرج:</label>
-                    <input type="number" id="totalEmp" placeholder="مثال: 120">
-                </div>
+                <h3>✨ مفهوم الجودة</h3>
+                <p>الجودة هي تنفيذ الأعمال والخدمات التعليمية وفق معايير محددة تضمن تحقيق رضا المستفيدين والتحسين المستمر للأداء.</p>
+                <p><strong>وتشمل أهدافها:</strong> رفع كفاءة العملية التعليمية، تحسين الخدمات الطلابية، تطوير أداء هيئة التدريس، وتحقيق الرضا التام للمستفيدين.</p>
                 
-                <button class="action-btn" onclick="runCalculator()">احسب المؤشر الإحصائي</button>
-                
-                <div id="calcResult" class="result-box"></div>
+                <h3>🏅 مفهوم الاعتماد الأكاديمي</h3>
+                <p>الاعتماد الأكاديمي هو عملية تقييم تقوم بها جهات متخصصة ومستقلة للتأكد من أن المؤسسة أو البرنامج الأكاديمي يحقق المعايير الصارمة المطلوبة للجودة التعليمية.</p>
+                <p><strong>ويهدف إلى:</strong> ضمان جودة المخرجات والشهادات التعليمية، تعزيز الثقة بالبرامج الأكاديمية، تحسين القدرة التنافسية للمؤسسة، ودعم عمليات التحسين المستمر.</p>
+
+                <h3>💎 أهمية الجودة والاعتماد الأكاديمي للمنظومة</h3>
+                <ul>
+                    <li>رفع الكفاءة والمستوى العام والنوعي للتعليم والتعلم.</li>
+                    <li>تعزيز السمعة الأكاديمية والمكانة العلمية للمؤسسة محلياً ودولياً.</li>
+                    <li>تحسين وتوسيع فرص الخريجين المتاحة في أسواق العمل المتنوعة.</li>
+                    <li>تحقيق التميز المؤسسي والاستدامة التعليمية والتشغيلية المرجوة.</li>
+                </ul>
             </div>
         </section>
 
-        <section id="game" class="page-section">
+        <section id="tab-relation" class="page-section">
             <div class="card">
-                <h2>🎮 لعبة التحدي التفاعلية: خبير الجودة والإحصاء</h2>
-                <p>اختبري مهارتكِ وقدرتكِ المعرفية في الربط الصحيح بين العلوم الإحصائية ومتطلبات الجودة الوطنية:</p>
-                <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
+                <h2>ثالثاً ورابعاً: العلاقة ودور الإحصاء في الاعتماد الأكاديمي</h2>
+                <p>تعتمد الجودة بشكل كبير ومباشر على البيانات والإحصاءات من أجل قياس الأداء وتجويده بصورة مستمرة. ويوضح الجدول التالي هذا الترابط الحاسم:</p>
                 
-                <div id="quiz-block">
-                    <h3 id="gameQuestion" style="color: var(--primary-color);">جاري التحميل...</h3>
-                    <div class="options-grid" id="gameOptions"></div>
-                    <div id="gameFeedback" style="font-weight: bold; font-size: 1.1rem; margin-top: 15px;"></div>
-                    <button id="gameNextBtn" class="action-btn" style="display: none; margin-top: 20px;" onclick="handleNextQuestion()">السؤال التالي ⬅️</button>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>دور العملية الإحصائية</th>
+                            <th>الأثر الإيجابي المباشر على الجودة الأكاديمية</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>جمع البيانات</strong></td>
+                            <td>توفير معلومات ومؤشرات دقيقة وشاملة عن الأداء الحالي للمؤسسة.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>تحليل البيانات</strong></td>
+                            <td>تحديد وحصر المشكلات القائمة بدقة بجانب تسليط الضوء على نقاط القوة.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>تفسير النتائج</strong></td>
+                            <td>فهم الأسباب الحقيقية والجذور العميقة للتغيرات الحادثة في مستويات الأداء.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>إعداد التقارير</strong></td>
+                            <td>تقديم أدلة قطعية لدعم اتخاذ القرارات من قبل الإدارات العليا واللجان.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>التنبؤ بالاتجاهات</strong></td>
+                            <td>رسم الخطط الاستباقية للتحسين والتطوير الأكاديمي المستمر للمستقبل.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <p>الإحصاء لا يقتصر على عرض الأرقام فقط، بل يساعد الإدارة على معرفة: (ما الذي يعمل بشكل جيد؟ ما الجوانب التي تحتاج إلى تطوير؟ ما القرارات التي تحقق أفضل النتائج؟)</p>
+
+                <h3>📋 أدوار الإحصاء الأساسية لتحقيق الاعتماد الأكاديمي:</h3>
+                <ol>
+                    <li><strong>تحليل نتائج الاستبانات:</strong> مثل استبانات رضا الطلاب، وأعضاء هيئة التدريس، والخريجين، بالإضافة لجهات التوظيف لمعرفة الجوانب التي تحتاج إلى معالجة وتطوير.</li>
+                    <li><strong>قياس مؤشرات الأداء الكمية:</strong> مثل معدلات التخرج والنجاح، ونسب توظيف الخريجين الفورية، ونسب الإنجاز البحثي والمشاركات المجتمعية.</li>
+                    <li><strong>متابعة التحسين المستمر:</strong> بمقارنة نتائج المؤشرات عبر السنوات لمعرفة مدى التقدم.</li>
+                    <li><strong>إعداد التقارير الداعمة:</strong> حيث تستخدم الجداول والنتائج كأدلة موثقة تثبت تحقيق معايير الاعتماد.</li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="tab-kpis" class="page-section">
+            <div class="card">
+                <h2>خامساً وسادساً: مؤشرات الأداء الرئيسية (KPIs) والاستبانات</h2>
+                <p>مؤشرات الأداء هي مقاييس رقمية مقننة تستخدم لتقييم مدى نجاح المؤسسة في تحقيق أهدافها الاستراتيجية. وتعد الاستبانات الأداة الكبرى لجمع هذه المؤشرات كالتالي:</p>
+                
+                <div class="grid-layout">
+                    <div class="grid-item">
+                        <h4>نسبة رضا الطلاب</h4>
+                        <p>تقيس رضا الطلاب عن المقررات، والخدمات والبيئة الجامعية.</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>رضا هيئة التدريس</h4>
+                        <p>تقيس مستوى الرضا عن بيئة العمل، والأنظمة الإدارية والإلكترونية.</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>معدل التخرج والتوظيف</h4>
+                        <p>تقيس نسبة إنهاء الدراسة في وقتها ونسبة الحصول على وظائف بالسوق.</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>نسبة المشاركة بالاستبانات</h4>
+                        <p>تقيس مدى تفاعل وجدية المستفيدين مع عمليات التقييم والتحسين.</p>
+                    </div>
+                </div>
+
+                <h3>🔄 الاستفادة المنهجية من نتائج الاستبانات:</h3>
+                <p>يمر تعظيم الفائدة من الاستبانات بستة إجراءات متتالية: (1. جمع البيانات من الميدان ⬅️ 2. تنظيف البيانات والتأكد من خلوها من الأخطاء ⬅️ 3. تحليل البيانات إحصائياً ⬅️ 4. إعداد التقارير الموثقة ⬅️ 5. اتخاذ الإجراءات التصحيحية الفورية ⬅️ 6. متابعة أثر التحسينات علمياً).</p>
+            </div>
+        </section>
+
+        <section id="tab-journey" class="page-section">
+            <div class="card">
+                <h2>سابعاً: رحلة البيانات المنهجية داخل الجامعة</h2>
+                <p>تمر البيانات بسبع مراحل دقيقة حتى تتحول من مجرد أرقام إلى أدلة تدعم ملف الاعتماد بنجاح:</p>
+                
+                <div style="position: relative; padding-right: 20px; border-right: 3px dashed var(--accent-color);">
+                    <p><strong>1. مرحلة جمع البيانات:</strong> من الاستبانات والأنظمة الأكاديمية والسجلات الإدارية الإلكترونية.</p>
+                    <p><strong>2. مرحلة تنظيف البيانات:</strong> معالجة البيانات المفقودة، إزالة التكرارات، وتوحيد طرق الترميز.</p>
+                    <p><strong>3. مرحلة التحليل الإحصائي:</strong> باستخدام الجداول التكرارية، المتوسطات، الرسوم، واختبار الفرضيات.</p>
+                    <p><strong>4. مرحلة إعداد التقارير:</strong> صياغة تقارير بصرية واضحة تساعد المسؤولين على فهم النتائج بيسر.</p>
+                    <p><strong>5. مرحلة اتخاذ القرار:</strong> اعتماد الإدارة على تلك النتائج الإحصائية في اتخاذ القرارات السليمة.</p>
+                    <p><strong>6. مرحلة التحسين المستمر:</strong> إطلاق وتنفيذ الخطط التطويرية ومتابعة منحنيات نتائجها الجديدة.</p>
+                    <p><strong>7. تحقيق الاعتماد الأكاديمي:</strong> تتويج الرحلة باستخدام تلك الأدلة في دعم وتدعيم ملفات الجودة.</p>
                 </div>
             </div>
         </section>
+
+        <section id="tab-dashboard" class="page-section">
+            <div class="card">
+                <h2>ثامناً: لوحة تحكم الجودة (Interactive Dashboard)</h2>
+                <p>تعرض لوحة التحكم الافتراضية هذه أهم المؤشرات بصورة تفاعلية تساعد المسؤولين والمراجعين على متابعة ومقارنة الأداء الأكاديمي بشكل فوري وبدقة:</p>
+                
+                <div class="grid-layout">
+                    <div class="grid-item">
+                        <h4>عدد الاستبانات المنفذة</h4>
+                        <div class="number">24</div>
+                        <p>استبانة شاملة</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>نسبة الاستجابة الكلية</h4>
+                        <div class="number">84%</div>
+                        <p>تفاعل ممتاز</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>متوسط رضا الطلاب</h4>
+                        <div class="number">4.3 / 5</div>
+                        <p>مؤشر إيجابي</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>معدل توظيف الخريجين</h4>
+                        <div class="number">79%</div>
+                        <p>خلال 6 أشهر</p>
+                    </div>
+                </div>
+                <p style="margin-top: 20px; text-align: center; color: #64748b; font-size: 0.95rem;">💡 تتيح اللوحة المتقدمة مقارنة البيانات مباشرة بين الكليات المختلفة، والسنوات الدراسية المتتابعة، ورصد الاتجاهات الزمنية للمؤشرات بدقة.</p>
+            </div>
+        </section>
+
+        <section id="tab-game" class="page-section">
+            <div class="card">
+                <h2>تاسعاً: لعبة إحصائية تفاعلية ("اتخذ القرار الصحيح")</h2>
+                <p><strong>فكرة اللعبة:</strong> يعرض النظام مشكلة أو نتيجة إحصائية واقعية ويطلب منكِ اختيار القرار الأنسب بناءً على قراءة البيانات لتنمية التفكير التحليلي وتعزيز الثقافة الإحصائية في الجودة.</p>
+                
+                <div style="background-color: #f1f5f9; padding: 25px; border-radius: 10px; margin-top: 20px;">
+                    <h3 style="margin-top:0;" id="game-scen">الموقف الحالي: انخفضت نسبة رضا الطلاب عن مقرر دراسي معين فجأة من 88% إلى 70%.</h3>
+                    <p>ما هو الإجراء الإداري والإحصائي المناسب المتخذ؟</p>
+                    
+                    <div class="options-vertical">
+                        <button class="game-btn" onclick="checkGameAns(0, this)">أ) زيادة الأنشطة الطلابية والترفيهية بالكلية فوراً.</button>
+                        <button class="game-btn" onclick="checkGameAns(1, this)">ب) تطوير وتغيير المقررات الدراسية الأخرى بشكل جماعي.</button>
+                        <button class="game-btn" onclick="checkGameAns(2, this)">ج) تحسين الخدمات الإلكترونية العامة بالجامعة وتجاهل المقرر.</button>
+                        <button class="game-btn" onclick="checkGameAns(3, this)">د) إجراء دراسة إحصائية تفصيلية لمعرفة أسباب الانخفاض وحصر المشكلة بدقة.</button>
+                    </div>
+                    <div id="game-res" style="font-weight: bold; font-size: 1.1rem; margin-top: 15px;"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-contact" class="page-section">
+            <div class="card">
+                <h2>الحادي عشر: صفحة الاقتراحات والتواصل الفعال</h2>
+                <p>تهدف هذه الصفحة إلى تعزيز مشاركة كافة المستفيدين في تحسين وتطوير الخدمات الأكاديمية وضمان الجودة المستمرة:</p>
+                
+                <form onsubmit="event.preventDefault(); handleFormSubmit();">
+                    <div class="form-control">
+                        <label>نوع الطلب المُراد إرساله:</label>
+                        <select id="form-type">
+                            <option value="1">نموذج إرسال المقترحات التطويرية</option>
+                            <option value="2">نموذج تقديم الملاحظات والشكاوى</option>
+                            <option value="3">استبانة رضا المستخدم عن المنصة الحالية</option>
+                        </select>
+                    </div>
+                    <div class="form-control">
+                        <label>الاسم (اختياري):</label>
+                        <input type="text" id="form-name" placeholder="اكتبي اسمكِ هنا...">
+                    </div>
+                    <div class="form-control">
+                        <label>نص المقترح أو الملاحظة بالتفصيل:</label>
+                        <textarea id="form-msg" rows="5" placeholder="اكتبي تفاصيل الرسالة والمقترح الإحصائي هنا..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">إرسال الطلب لنظام الجودة</button>
+                </form>
+                <div id="form-feedback" style="margin-top: 15px; font-weight: bold; color: var(--success-color);"></div>
+            </div>
+        </section>
+
+        <div class="motto-card">
+            🌿 رسالة الموقع: "بالإحصاء نقيس الأداء، وبالجودة نحقق التميز، وبالاعتماد الأكاديمي نبني مستقبلاً أكثر استدامة وتطوراً."
+        </div>
 
     </div>
 
     <footer>
-        <p>© 2026 المنصة الوطنية الموحدة للإحصاء ومستهدفات الجودة الأكاديمية</p>
+        <p>© 2026 بوابة الجودة والاعتماد الأكاديمي الشاملة - تم التنسيق والتنظيم بحب</p>
     </footer>
 
     <script>
-        // دالة التنقل المنظم والسلس بين الخيارات
-        function showSection(sectionId) {
-            document.querySelectorAll('.page-section').forEach(section => section.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(link => link.classList.remove('active'));
+        // دالة التنقل المنظم والسلس بين خيارات شريط التنقل العلوي
+        function navigateMenu(sectionId) {
+            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
             
             document.getElementById(sectionId).classList.add('active');
             event.target.classList.add('active');
-        }
-
-        // دالة إرسال استبيان الأهمية التفاعلي
-        function submitSurvey() {
-            let selectedOption = document.querySelector('input[name="opinion"]:checked');
-            let feedback = document.getElementById('survey-feedback');
-            if (selectedOption) {
-                feedback.innerText = "✔️ تم رصد رأيكِ الإحصائي وتخزينه في نظام الجودة بنجاح! شكراً لمشاركتكِ.";
-                feedback.style.color = "var(--success-color)";
-            } else {
-                feedback.innerText = "⚠️ من فضلكِ، حددي خياراً أولاً قبل الإرسال.";
-                feedback.style.color = "var(--error-color)";
-            }
-        }
-
-        // دالة حاسبة مؤشرات الأداء الأكاديمي
-        function runCalculator() {
-            let grads = parseFloat(document.getElementById('totalGrads').value);
-            let emp = parseFloat(document.getElementById('totalEmp').value);
-            let box = document.getElementById('calcResult');
-
-            if (!grads || !emp || emp > grads || grads <= 0 || emp < 0) {
-                box.style.backgroundColor = "#fef2f2";
-                box.style.color = "var(--error-color)";
-                box.style.border = "1px solid #fca5a5";
-                box.innerText = "⚠️ خطأ في البيانات المكتوبة: يرجى التأكد من إدخال قيم موجبة منطقية (عدد الموظفين لا يتجاوز الخريجين).";
-            } else {
-                let finalScore = ((emp / grads) * 100).toFixed(1);
-                box.style.backgroundColor = "#f0fdf4";
-                box.style.color = "#166534";
-                box.style.border = "1px solid #bbf7d0";
-                box.innerText = `🎯 مؤشر التوظيف الفعلي للبرنامج هو: ${finalScore}% (هذه القيمة الرقمية تدعم ملف الاعتماد الخاص بكم بقوة!)`;
-            }
-            box.style.display = "block";
-        }
-
-        // كود اللعبة التفاعلية المنظم
-        const quizData = [
-            {
-                question: "ما هي الأداة الإحصائية الأنسب لقياس رضا الطلاب عن مقرر دراسي؟",
-                options: ["الاختبارات التحصيلية للأقسام", "الاستبانات وتحليلها إحصائياً وبشكل دوري", "الملاحظات والانطباعات العشوائية"],
-                correct: 1
-            },
-            {
-                question: "لماذا تصر هيئات ومراكز الاعتماد الأكاديمي على تحليل درجات الفصول إحصائياً؟",
-                options: ["لاستخدامها كورق أرشفة روتيني", "للتأكد من عدالة القياس والتحقق العلمي من نواتج التعلم", "لرفع نسب الصعوبة في المقررات المستقبلية"],
-                correct: 1
-            },
-            {
-                question: "ماذا يعني الاختصار الأكاديمي الشهير KPIs في أنظمة الجودة؟",
-                options: ["مؤشرات الأداء الرئيسية (Key Performance Indicators)", "الاختبارات الدورية المفاجئة للطلاب", "تقارير اللجان والمراجعات الخارجية للمباني"],
-                correct: 0
-            }
-        ];
-
-        let currentQuestionIndex = 0;
-        let score = 0;
-
-        const questionElement = document.getElementById('gameQuestion');
-        const optionsContainer = document.getElementById('gameOptions');
-        const feedbackElement = document.getElementById('gameFeedback');
-        const nextButton = document.getElementById('gameNextBtn');
-
-        function startQuiz() {
-            resetQuizState();
-            let currentQuestion = quizData[currentQuestionIndex];
-            questionElement.innerText = `${currentQuestionIndex + 1}. ${currentQuestion.question}`;
-
-            currentQuestion.options.forEach((option, index) => {
-                const btn = document.createElement('button');
-                btn.innerText = option;
-                btn.classList.add('game-opt-btn');
-                btn.addEventListener('click', () => handleOptionSelection(index, btn));
-                optionsContainer.appendChild(btn);
-            });
-        }
-
-        function resetQuizState() {
-            feedbackElement.innerText = '';
-            nextButton.style.display = 'none';
-            while (optionsContainer.firstChild) {
-                optionsContainer.removeChild(optionsContainer.firstChild);
-            }
-        }
-
-        function handleOptionSelection(selectedIndex, clickedBtn) {
-            let correctIndex = quizData[currentQuestionIndex].correct;
-            const allButtons = optionsContainer.getElementsByClassName('game-opt-btn');
             
-            for (let b of allButtons) {
-                b.disabled = true;
-            }
+            // رفع الصفحة لأعلى بسلاسة عند التنقل
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
 
-            if (selectedIndex === correctIndex) {
-                clickedBtn.classList.add('correct');
-                feedbackElement.innerText = "🎉 إجابة صحيحة ومثالية! أحسنتِ.";
-                feedbackElement.style.color = "var(--success-color)";
-                score++;
+        // دالة التحكم في اللعبة الإحصائية التفاعلية
+        function checkGameAns(idx, clickedBtn) {
+            const btns = document.querySelectorAll('.game-btn');
+            const res = document.getElementById('game-res');
+            
+            // إغلاق الأزرار بعد الاختيار
+            btns.forEach(b => b.disabled = true);
+            
+            if (idx === 3) {
+                clickedBtn.classList.add('btn-correct');
+                res.innerHTML = "🎉 إجابة صحيحة ومثالية! <br><span style='font-weight:normal; font-size:1rem; color:#475569;'>التفسير العلمي: الإجراء الإحصائي الأثبت هو البحث والتحليل لمعرفة الأسباب الحقيقية وراء تراجع الرقم بدلاً من إطلاق تخمينات عشوائية غير مبنية على أدلة حقيقية.</span>";
+                res.style.color = "var(--success-color)";
             } else {
-                clickedBtn.classList.add('wrong');
-                allButtons[correctIndex].classList.add('correct');
-                feedbackElement.innerText = "❌ إجابة غير صحيحة، ركزي في الأسئلة القادمة!";
-                feedbackElement.style.color = "var(--error-color)";
-            }
-            nextButton.style.display = "block";
-        }
-
-        function handleNextQuestion() {
-            currentQuestionIndex++;
-            if (currentQuestionIndex < quizData.length) {
-                startQuiz();
-            } else {
-                displayFinalResults();
+                clickedBtn.classList.add('btn-wrong');
+                btns[3].classList.add('btn-correct');
+                res.innerHTML = "❌ اختيار غير دقيق أكاديمياً! <br><span style='font-weight:normal; font-size:1rem; color:#475569;'>القرار الصحيح هو (د): فأنظمة الجودة تقتضي دراسة أسباب انخفاض المؤشرات الرقمية أولاً وتحليلها للوقوف على الخلل الحقيقي وعلاجه بشكل مستدام.</span>";
+                res.style.color = "var(--error-color)";
             }
         }
 
-        function displayFinalResults() {
-            resetQuizState();
-            questionElement.innerText = "🏆 مبارك! لقد تمكنتِ من إنهاء التحدي الأكاديمي بنجاح.";
-            feedbackElement.innerText = `درجتكِ الإجمالية هي: ${score} من أصل ${quizData.length}`;
-            feedbackElement.style.color = "var(--secondary-color)";
-            nextButton.innerText = "إعادة التحدي والمحاولة مجدداً 🔄";
-            nextButton.style.display = 'block';
-            nextButton.onclick = () => {
-                currentQuestionIndex = 0;
-                score = 0;
-                nextButton.innerText = "السؤال التالي ⬅️";
-                nextButton.onclick = handleNextQuestion;
-                startQuiz();
-            };
+        // دالة إرسال النماذج والمقترحات
+        function handleFormSubmit() {
+            const feed = document.getElementById('form-feedback');
+            feed.innerText = "✔️ تم إرسال رسالتكِ بنجاح إلى الإدارة المختصة بنظام الجودة! سيتم فحصها وتحديث حالة المقترح قريباً.";
+            document.getElementById('form-msg').value = "";
+            document.getElementById('form-name').value = "";
         }
-
-        // تشغيل اللعبة فور تحميل المنصة لأول مرة
-        startQuiz();
     </script>
 </body>
 </html>
